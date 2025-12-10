@@ -39,7 +39,7 @@ const authController = {
 
     const token = jwt.sign(
       { id: user._id },
-      process.env.JWT_SECRET || "secret123"
+       "secret123"
     );
 
     res.json({ token });
