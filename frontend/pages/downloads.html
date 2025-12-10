@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Downloads</title>
+</head>
+<body>
+  <h1>Public Files</h1>
+
+  <div id="publicFiles"></div>
+  <p><a href="upload.html">Back to Upload</a></p>
+
+  <script>
+    function loadPublicFiles() {
+      fetch("http://localhost:8000/api/public-files")
+        .then(res => res.json())
+        .then(files => {
+          const container = document.getElementById("publicFiles");
+          container.innerHTML = "";
+          files.forEach(f => {
+            const p = document.createElement("p");
+            p.innerHTML = `
+              ${f.filename}
+              <a href="http://localhost:8000/api/files/${f._id}/download">Download</a>
+            `;
+            container.appendChild(p);
+          });
+        });
+    }
+
+    loadPublicFiles();
+  </script>
+</body>
+</html>
