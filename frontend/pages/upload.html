@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload</title>
+</head>
+<body>
+  <h1>Upload New File</h1>
+
+  <input type="file" id="fileInput" required><br><br>
+
+  <label>Privacy:</label>
+  <select id="privacySelect" required>
+    <option value="public">Public</option>
+    <option value="private">Private</option>
+  </select>
+  <br><br>
+
+  <button id="btnUpload">Upload File</button>
+
+  <p>
+    <a href="my-files.html">Go to My Files</a> |
+    <a href="downloads.html">View Public Downloads</a>
+  </p>
+
+  <script>
+    document.getElementById("btnUpload").onclick = function () {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        alert("Please login first");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const fileInput = document.getElementById("fileInput");
+      if (fileInput.files.length === 0) {
+        alert("Please select a file");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      formData.append("privacy", document.getElementById("privacySelect").value);
+
+      fetch("http://localhost:8000/api/upload", {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + token
+        },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          alert(result.error);
+        } else {
+          alert("File uploaded");
+        }
+      });
+    };
+  </script>
+</body>
+</html>
