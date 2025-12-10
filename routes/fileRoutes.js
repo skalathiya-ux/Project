@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-
+const fileController = require("../controllers/fileController");
 const router = express.Router();
 
 const upload = multer({
@@ -17,18 +17,18 @@ const upload = multer({
 });
 
 // POST /api/upload  
-router.post("/upload", upload.single("file"), ()=>{});
+router.post("/upload", upload.single("file"), fileController.uploadFile);
 
 // GET /api/public-files
-router.get("/public-files", ()=>{});
+router.get("/public-files", fileController.getPublicFiles);
 
 // GET /api/my-files  
-router.get("/my-files", ()=>{});
+router.get("/my-files", fileController.getMyFiles);
 
 // GET /api/files/:id/download
-router.get("/files/:id/download",()=>{});
+router.get("/files/:id/download",fileController.downloadFile);
 
 // DELETE /api/files/:id  
-router.delete("/files/:id", ()=>{});
+router.delete("/files/:id", fileController.deleteFile);
 
 module.exports = router;
