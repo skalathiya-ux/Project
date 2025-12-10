@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Register</title>
+  <title>Login</title>
 </head>
 <body>
-  <h1>Create Account</h1>
-
-  <label>Username</label><br>
-  <input id="username" required><br><br>
+  <h1>Login</h1>
 
   <label>Email</label><br>
   <input id="email" type="email" required><br><br>
@@ -15,30 +12,28 @@
   <label>Password</label><br>
   <input id="password" type="password" required><br><br>
 
-  <button id="btnRegister">Sign Up</button>
-
-  <p>Already registered? <a href="login.html">Login here</a></p>
+  <button id="btnLogin">Login</button>
 
   <script>
-    document.getElementById("btnRegister").onclick = function () {
+    document.getElementById("btnLogin").onclick = function () {
       const data = {
-        username: document.getElementById("username").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
       };
 
-      fetch("http://localhost:8000/api/register", {
+      fetch("http://localhost:8000/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       })
       .then(res => res.json())
       .then(result => {
-        if (result.error) {
-          alert(result.error);
+        if (result.token) {
+          localStorage.setItem("authToken", result.token);
+          alert("Login successful");
+          window.location.href = "upload.html";
         } else {
-          alert("Registered!");
-          window.location.href = "login.html";
+          alert(result.error || "Login failed");
         }
       });
     };
