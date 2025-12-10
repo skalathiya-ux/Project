@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const authMiddleware = require("../middleware/auth");
 const fileController = require("../controllers/fileController");
 const router = express.Router();
 
@@ -17,18 +18,18 @@ const upload = multer({
 });
 
 // POST /api/upload  
-router.post("/upload", upload.single("file"), fileController.uploadFile);
+router.post("/upload",authMiddleware, upload.single("file"), fileController.uploadFile);
 
 // GET /api/public-files
 router.get("/public-files", fileController.getPublicFiles);
 
 // GET /api/my-files  
-router.get("/my-files", fileController.getMyFiles);
+router.get("/my-files",authMiddleware, fileController.getMyFiles);
 
 // GET /api/files/:id/download
 router.get("/files/:id/download",fileController.downloadFile);
 
 // DELETE /api/files/:id  
-router.delete("/files/:id", fileController.deleteFile);
+router.delete("/files/:id",authMiddleware, fileController.deleteFile);
 
 module.exports = router;
