@@ -11,6 +11,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const authRoutes = require("./routes/authRoutes");
+app.use("/api", authRoutes);
 
 app.listen(8000, () => {
   console.log("Server started on port", 8000);
