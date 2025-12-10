@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Files</title>
+</head>
+<body>
+  <h1>My Uploaded Files</h1>
+
+  <div id="fileList"></div>
+
+  <p><a href="upload.html">Back to Upload</a></p>
+
+  <script>
+    function loadMyFiles() {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        alert("You need to login");
+        window.location.href = "login.html";
+        return;
+      }
+
+      fetch("http://localhost:8000/api/my-files", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      .then(res => res.json())
+      .then(files => {
+        const container = document.getElementById("fileList");
+        container.innerHTML = "";
+
+        files.forEach(f => {
+          const p = document.createElement("p");
+          p.innerHTML = `
+            ${f.filename} (${f.privacy})
+            <a href="http://localhost:8000/api/files/${f._id}/download">Download</a>
+            <button onclick="deleteFile('${f._id}')">Delete</button>
+          `;
+          container.appendChild(p);
+        });
+      });
+    }
+
+    function deleteFile(id) {
+      const token = localStorage.getItem("authToken");
+      fetch("http://localhost:8000/api/files/" + id, {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      .then(res => res.json())
+      .then(result => {
+        alert(result.message || result.error);
+        loadMyFiles();
+      });
+    }
+
+    loadMyFiles();
+  </script>
+</body>
+</html>
