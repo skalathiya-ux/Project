@@ -109,21 +109,75 @@ On success:
 A JWT token is saved in localStorage
 You are redirected to upload.html (or you can open it manually)
 
-Step 3. Upload a file
+### Step 3. Upload a file
 
 Open: upload.html
-
 Choose a file using the file input
-
 Select privacy:
 
-public → visible to everyone in Public Downloads
+**public → visible to everyone in Public Downloads
+private → visible only in “My Files”**
 
-private → visible only in “My Files”
-
-Click Upload File
-
+Click **Upload File**
 On success, you’ll see:
 File uploaded
 
+### Step 4. View My Files
 
+Open: my-files.html
+This page shows all files uploaded by the currently logged-in user
+
+For each file, you may see:
+**File name
+Link to download/open
+Privacy status (public / private)**
+
+### Step 5. View Public Downloads
+
+Open: downloads.html
+This page shows all files that have been uploaded with privacy set to public.
+
+### Step 6. Logout
+
+On pages where a Logout link or button exists (e.g., upload.html):
+
+Clicking Logout:
+Removes the JWT token from localStorage
+Redirects you back to login.html
+After logout, you must login again to upload or view “My Files”.
+
+## 4. Backend API Endpoints
+These routes are already implemented.
+
+### Authentication
+POST /api/register
+POST /api/login
+
+### Files
+POST /api/upload
+GET  /api/my-files
+GET  /api/public-files
+
+## HOW TO TEST THIS PROJECT ON ANY COMPUTER
+
+Follow these steps in exact order:
+
+✔ Step 1 — Install Node.js
+✔ Step 2 — Open terminal & go to backend folder and run :cd backend
+✔ Step 3 — Run:npm install
+✔ Step 4 — Create .env with MONGO_URL
+✔ Step 5 — Start server, run this : node server.js
+✔ Step 6 — Open the frontend
+Open:frontend/pages/register.html
+✔ Step 7 — Register → Login → Upload → View Files → Logout
+
+### **FINAL NOTES FOR THE PROFESSOR**
+
+The project uses vanilla HTML, not React
+All pages interact directly with the backend via fetch()
+No build process is required
+The project can be run on any machine with Node.js installed
+Instructions are purposefully written in a clear step-by-step way
+MongoDB Atlas must allow access (IP whitelist or 0.0.0.0/0 enabled)
+
+**## END OF README**
