@@ -21,13 +21,14 @@
 
   <script>
     document.getElementById("btnRegister").onclick = function () {
+
       const data = {
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
+        username: document.getElementById("username").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value.trim()
       };
 
-      fetch("http://localhost:8000/api/register", {
+      fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -40,6 +41,10 @@
           alert("Registered!");
           window.location.href = "login.html";
         }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Network error");
       });
     };
   </script>
