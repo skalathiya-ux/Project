@@ -12,7 +12,7 @@
 
   <script>
     function loadMyFiles() {
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem("token"); 
       if (!token) {
         alert("You need to login");
         window.location.href = "login.html";
@@ -29,6 +29,11 @@
         const container = document.getElementById("fileList");
         container.innerHTML = "";
 
+        if (!files || files.length === 0) {
+          container.innerHTML = "<p>No files uploaded yet.</p>";
+          return;
+        }
+
         files.forEach(f => {
           const p = document.createElement("p");
           p.innerHTML = `
@@ -42,7 +47,7 @@
     }
 
     function deleteFile(id) {
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem("token"); // FIXED
       fetch("http://localhost:8000/api/files/" + id, {
         method: "DELETE",
         headers: {
