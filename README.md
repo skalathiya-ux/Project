@@ -10,6 +10,7 @@ This project is a simple **file hosting and sharing web application** with:
 - **"My Files" page for logged-in user**
 - **Public Downloads page for all public files**
 - **Logout functionality**
+
 The backend is built with **Node.js + Express + MongoDB (Atlas)** and the frontend is built with **plain HTML, CSS, and JavaScript** (no React).  
 
 Once the server is running, the app can be used **directly from a web browser** by opening the HTML pages.
@@ -18,30 +19,28 @@ Once the server is running, the app can be used **directly from a web browser** 
 
 ## Technology Stack
 
-- **Backend**
-  - Node.js
-  - Express
-  - MongoDB (Atlas) with Mongoose
-  - JSON Web Tokens (JWT)
-  - Multer (for file uploads)
-  - CORS
+### **Backend**
+- Node.js  
+- Express  
+- MongoDB (Atlas) with Mongoose  
+- JSON Web Tokens (JWT)  
+- Multer (for file uploads)  
+- CORS  
 
-- **Frontend**
-  - Plain HTML pages
-  - Vanilla JavaScript (`fetch` API)
-  - Simple CSS
+### **Frontend**
+- Plain HTML pages  
+- Vanilla JavaScript (`fetch` API)  
+- Simple CSS  
 
 ---
 
 ## Prerequisites
 
 Before running the project, make sure you have:
-**
-Node.js installed (LTS version is fine)**
-**
-A MongoDB Atlas account (or local MongoDB)**
 
-VS COde is the best way to run this code.
+- **Node.js installed (LTS version recommended)**
+- **A MongoDB Atlas account (or local MongoDB)**
+- **VS Code** (recommended for easiest usage)
 
 ---
 
@@ -52,9 +51,18 @@ Inside .env file in Backend,
 
 MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/filehost
 
-Replace <username>, <password>, <cluster-url>, and <database-name> with your actual MongoDB Atlas credentials.
-Note:
-The code uses process.env.MONGO_URL in config/db.js, so this variable name must be exactly MONGO_URL.
+Replace:
+
+- `username`  
+- `password`  
+- `cluster`  
+- `filehost`  
+
+with your actual MongoDB credentials.
+
+> The variable name **must be exactly** `MONGO_URL` because the backend reads it using `process.env.MONGO_URL`.
+
+---
 
 ### Step 2. Go to backend folder
 Open a terminal in the project root and run:** cd backend**
@@ -182,4 +190,4 @@ The project can be run on any machine with Node.js installed
 Instructions are purposefully written in a clear step-by-step way
 MongoDB Atlas must allow access (IP whitelist or 0.0.0.0/0 enabled)
 
-**## END OF README**
+## END OF README
