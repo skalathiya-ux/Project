@@ -43,6 +43,8 @@ A MongoDB Atlas account (or local MongoDB)**
 
 VS COde is the best way to run this code.
 
+---
+
 **## 1. Backend Setup (Server)**
 
 ### Step 1st:
