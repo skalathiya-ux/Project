@@ -29,7 +29,8 @@
       .then(res => res.json())
       .then(result => {
         if (result.token) {
-          localStorage.setItem("authToken", result.token);
+         
+          localStorage.setItem("token", result.token);
           alert("Login successful");
           window.location.href = "upload.html";
         } else {
