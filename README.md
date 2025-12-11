@@ -45,7 +45,7 @@ VS COde is the best way to run this code.
 
 ---
 
-**## 1. Backend Setup (Server)**
+## 1. Backend Setup (Server)
 
 ### Step 1st:
 Inside .env file in Backend,
@@ -71,7 +71,7 @@ You should see something like:
 Server started on port 8000
 **
 
-##2. Frontend Usage
+## 2. Frontend Usage
 The frontend is plain HTML, so you can use it directly from the browser.
 
 ** Use VS Code Live Server**
