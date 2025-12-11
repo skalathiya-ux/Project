@@ -50,9 +50,9 @@ VS COde is the best way to run this code.
 ### Step 1st:
 Inside .env file in Backend,
 
-MONGO_URL=mongodb+srv://****<username>:<password>**@<cluster-url>/<database-name>**?retryWrites=true&w=majority
+MONGO_URL=mongodb+srv://**<username>:<password>@<cluster-url>/<database-name>**?retryWrites=true&w=majority
 
-Replace <username>, <password>, <cluster-url>, and <database-name> with your actual MongoDB Atlas credentials.
+Replace **<username>, <password>, <cluster-url>, and <database-name**> with your actual MongoDB Atlas credentials.
 Note:
 The code uses process.env.MONGO_URL in config/db.js, so this variable name must be exactly MONGO_URL.
 
